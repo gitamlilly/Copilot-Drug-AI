@@ -2,31 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fake Drug Creation & Testing AI</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Enhanced Fake Drug AI</title>
+
+  <!-- Chart.js for plotting -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- TensorFlow.js for dummy ML model -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Fake Drug Creation & Testing AI</h1>
+  <div class="container">
+    <h1>Enhanced Fake Drug Creation & Testing AI</h1>
 
-  <div class="app">
-    <!-- Step 1: User designs a molecule -->
-    <section class="section">
+    <!-- Progress bar -->
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <!-- Step 1: Design -->
+    <section class="step" id="step-1">
       <h2>Step 1: Design Molecule</h2>
       <textarea id="moleculeInput" placeholder="Enter molecule name or SMILES…"></textarea>
       <button id="createBtn">Create Drug</button>
     </section>
 
-    <!-- Step 2: User tests the generated drug -->
-    <section class="section">
-      <h2>Step 2: Test Drug</h2>
-      <button id="testBtn" disabled>Test Drug</button>
+    <!-- Step 2: Review Properties -->
+    <section class="step hidden" id="step-2">
+      <h2>Step 2: Review Properties</h2>
+      <ul id="propertiesList"></ul>
+      <button id="nextToTestBtn">Proceed to Testing</button>
     </section>
 
-    <!-- Results appear here -->
-    <section class="section">
-      <h2>Results</h2>
-      <pre id="resultOutput"></pre>
+    <!-- Step 3: Test & Visualize -->
+    <section class="step hidden" id="step-3">
+      <h2>Step 3: Test Drug</h2>
+      <button id="testBtn">Run Predictions</button>
+
+      <!-- Loading spinner -->
+      <div id="spinner" class="hidden">🔄 Running model…</div>
+
+      <!-- Charts -->
+      <canvas id="barChart" class="hidden"></canvas>
+      <canvas id="radarChart" class="hidden"></canvas>
     </section>
   </div>
 
