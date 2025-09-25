@@ -201,7 +201,18 @@ function renderRadarChart(effects) {
 /* -----------------------------
    Utility Functions
 ------------------------------*/
-// Pick `n` random items from `arr`
+/**
+ * Pick `n` random items from `arr` without mutating the original.
+ * tf.util.shuffle(arr) shuffles in place and returns undefined,
+ * so we shuffle a copy and then slice it.
+ */
 function pickRandom(arr, n) {
-  return tf.util.shuffle(arr).slice(0,n);
+  // 1. Copy to avoid mutating the original
+  const copy = arr.slice()
+
+  // 2. Shuffle the copy in place
+  tf.util.shuffle(copy)
+
+  // 3. Return the first n items
+  return copy.slice(0, n)
 }
